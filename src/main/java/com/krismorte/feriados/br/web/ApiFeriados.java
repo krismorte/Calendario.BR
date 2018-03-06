@@ -8,6 +8,7 @@ package com.krismorte.feriados.br.web;
 import com.krismorte.feriados.br.model.Events;
 import com.krismorte.feriados.br.util.LocationNameUtil;
 import java.io.InputStream;
+import java.io.StringWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.security.cert.X509Certificate;
@@ -18,6 +19,7 @@ import javax.net.ssl.SSLSession;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 import javax.xml.bind.JAXBContext;
+import org.apache.commons.io.IOUtils;
 
 /**
  * http://www.rgagnon.com/javadetails/java-fix-certificate-problem-in-HTTPS.html
@@ -77,12 +79,25 @@ public class ApiFeriados {
                 = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
         connection.setRequestProperty("Accept", "application/xml");
+        connection.setRequestProperty("Accept", "text/plain");
 
+        
         JAXBContext jc = JAXBContext.newInstance(Events.class);
         InputStream xml = connection.getInputStream();
-        Events event = (Events) jc.createUnmarshaller().unmarshal(xml);
+        Events event = (Events) jc.createUnmarshaller().unmarshal(xml);        
+        if (event.getEvent().isEmpty()) {
+            System.out.println("nulo");
+            StringWriter writer = new StringWriter();
+            IOUtils.copy(xml, writer, "UTF-8");
+            String theString = writer.toString();
+            System.out.println("" + theString);
+        }else{
+            System.out.println("não nulo");
+        }
+
         connection.disconnect();
         return event;
+
     }
 
     public Events listAll(int ano, String estado, String cidade, String token) throws Exception {

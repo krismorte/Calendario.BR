@@ -18,7 +18,7 @@ public class TesteApi {
     public static void main(String[] args) {
         ApiFeriados api = new ApiFeriados();
         try {
-            Events event = api.listAll(2018, "sp", "SÃO paulo");
+            Events event = api.listAll(2018, "ce", "maracanau");
             for (Event e : event.getEvent()) {
                 System.out.println(e.getDescription());
             }
