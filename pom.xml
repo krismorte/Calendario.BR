@@ -20,7 +20,7 @@
     <version>1.0</version>
     <packaging>jar</packaging>
     <name>feriados.br</name>
-    <description>feriados.br</description>
+    <description>Biblioteca que encapsula as chamadas da API http://www.calendario.com.br/</description>
     <url>http://github.com/krismorte/Calendario.BR</url>
     <inceptionYear>2018</inceptionYear>
     <licenses>
@@ -82,6 +82,20 @@
                         <id>attach-javadocs</id>
                         <goals>
                             <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.5</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
                         </goals>
                     </execution>
                 </executions>
