@@ -1,4 +1,5 @@
 
+import com.krismorte.feriados.br.FeriadoBR;
 import com.krismorte.feriados.br.model.Event;
 import com.krismorte.feriados.br.model.Events;
 import com.krismorte.feriados.br.util.LocationNameUtil;
@@ -18,13 +19,13 @@ public class TesteApi {
     public static void main(String[] args) {
         ApiFeriados api = new ApiFeriados();
         try {
-            Events event = api.listAll(2018, "ce", "maracanau");
+            FeriadoBR feriadoBR = new FeriadoBR("a3Jpc21vcnRlQHlhaG9vLmNvbS5iciZoYXNoPTE3MjYxNTIxMQ==");
+
+            Events event = feriadoBR.get(2018, "ce", "fortaleza");
             for (Event e : event.getEvent()) {
                 System.out.println(e.getDescription());
             }
-            System.out.println(LocationNameUtil.validade("Joâo Pessõa ádída"));
         } catch (Exception ex) {
-            System.out.println("" + ex.getCause());
             ex.printStackTrace();
         }
     }

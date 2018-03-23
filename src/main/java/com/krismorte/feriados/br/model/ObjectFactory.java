@@ -33,6 +33,7 @@ public class ObjectFactory {
     /**
      * Create an instance of {@link Events }
      * 
+     * @return 
      */
     public Events createEvents() {
         return new Events();
@@ -41,6 +42,7 @@ public class ObjectFactory {
     /**
      * Create an instance of {@link Location }
      * 
+     * @return 
      */
     public Location createLocation() {
         return new Location();
@@ -49,6 +51,7 @@ public class ObjectFactory {
     /**
      * Create an instance of {@link Event }
      * 
+     * @return 
      */
     public Event createEvent() {
         return new Event();

@@ -5,6 +5,7 @@
  */
 package com.krismorte.feriados.br.web;
 
+import com.krismorte.feriados.br.model.ErrorApi;
 import com.krismorte.feriados.br.model.Events;
 import com.krismorte.feriados.br.util.LocationNameUtil;
 import java.io.InputStream;
@@ -68,7 +69,7 @@ public class ApiFeriados {
          */
     }
 
-    public Events listAll(int ano, String estado, String cidade) throws Exception {
+    /* public Events listAll(int ano, String estado, String cidade) throws Exception {
         skipSSLCert();
 
         cidade = LocationNameUtil.validade(cidade);
@@ -98,25 +99,46 @@ public class ApiFeriados {
         connection.disconnect();
         return event;
 
-    }
-
+    }*/
     public Events listAll(int ano, String estado, String cidade, String token) throws Exception {
         skipSSLCert();
 
         cidade = LocationNameUtil.validade(cidade);
 
         String uri = "https://api.calendario.com.br/?ano=" + ano + "&estado=" + estado + "&cidade=" + cidade + "&token=" + token;
+
+        HttpURLConnection connection = getConnection(uri);
+
+        JAXBContext jc = JAXBContext.newInstance(Events.class);
+        InputStream xml = connection.getInputStream();
+        Events event = (Events) jc.createUnmarshaller().unmarshal(xml);
+
+        if (event.getLocation() == null) {
+            connection = getConnection(uri);
+            jc = JAXBContext.newInstance(ErrorApi.class);
+            xml = connection.getInputStream();
+            ErrorApi erro = (ErrorApi) jc.createUnmarshaller().unmarshal(xml);
+            connection.disconnect();
+            throw new Exception(erro.getMsg());
+            /*xml = connection.getInputStream();
+            StringWriter writer = new StringWriter();
+            IOUtils.copy(xml, writer, "UTF-8");
+            String theString = writer.toString();
+            System.out.println(theString);
+            connection.disconnect();*/
+        }
+        connection.disconnect();
+
+        return event;
+    }
+
+    private HttpURLConnection getConnection(String uri) throws Exception {
         URL url = new URL(uri);
         HttpURLConnection connection
                 = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
         connection.setRequestProperty("Accept", "application/xml");
-
-        JAXBContext jc = JAXBContext.newInstance(Events.class);
-        InputStream xml = connection.getInputStream();
-        Events event = (Events) jc.createUnmarshaller().unmarshal(xml);
-        connection.disconnect();
-        return event;
+        return connection;
     }
 
 }

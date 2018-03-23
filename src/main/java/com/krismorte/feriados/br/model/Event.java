@@ -1,5 +1,3 @@
-
-
 package com.krismorte.feriados.br.model;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -7,30 +5,16 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Classe Java de anonymous complex type.
- * 
- * <p>O seguinte fragmento do esquema especifica o conte�do esperado contido dentro desta classe.
- * 
- * <pre>
- * &lt;complexType>
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="date" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="description" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="type" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="type_code" type="{http://www.w3.org/2001/XMLSchema}byte"/>
- *         &lt;element name="link" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *       &lt;/sequence>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
- * </pre>
- * 
- * 
+ * <p>
+ * Classe Java de anonymous complex type.
+ *
+ * <p>
+ * O seguinte fragmento do esquema especifica o conte�do esperado contido dentro
+ * desta classe.
+ *
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -58,11 +42,9 @@ public class Event {
 
     /**
      * Obt�m o valor da propriedade date.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is {@link String }
+     *
      */
     public String getDate() {
         return date;
@@ -70,11 +52,9 @@ public class Event {
 
     /**
      * Define o valor da propriedade date.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is {@link String }
+     *
      */
     public void setDate(String value) {
         this.date = value;
@@ -82,11 +62,9 @@ public class Event {
 
     /**
      * Obt�m o valor da propriedade name.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is {@link String }
+     *
      */
     public String getName() {
         return name;
@@ -94,11 +72,9 @@ public class Event {
 
     /**
      * Define o valor da propriedade name.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is {@link String }
+     *
      */
     public void setName(String value) {
         this.name = value;
@@ -106,11 +82,9 @@ public class Event {
 
     /**
      * Obt�m o valor da propriedade description.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is {@link String }
+     *
      */
     public String getDescription() {
         return description;
@@ -118,23 +92,19 @@ public class Event {
 
     /**
      * Define o valor da propriedade description.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is {@link String }
+     *
      */
     public void setDescription(String value) {
         this.description = value;
     }
 
     /**
-     * Obt�m o valor da propriedade type.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * Obtém o valor da propriedade type.
+     *
+     * @return possible object is {@link String }
+     *
      */
     public String getType() {
         return type;
@@ -142,19 +112,18 @@ public class Event {
 
     /**
      * Define o valor da propriedade type.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is {@link String }
+     *
      */
     public void setType(String value) {
         this.type = value;
     }
 
     /**
-     * Obt�m o valor da propriedade typeCode.
-     * 
+     * Obtém o valor da propriedade typeCode.
+     *
+     * @return possible object is {@link byte }
      */
     public byte getTypeCode() {
         return typeCode;
@@ -162,19 +131,18 @@ public class Event {
 
     /**
      * Define o valor da propriedade typeCode.
-     * 
+     *
+     * @param  value allowed object is {@link byte }
      */
     public void setTypeCode(byte value) {
         this.typeCode = value;
     }
 
     /**
-     * Obt�m o valor da propriedade link.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * Obtém o valor da propriedade link.
+     *
+     * @return possible object is {@link String }
+     *
      */
     public String getLink() {
         return link;
@@ -182,11 +150,9 @@ public class Event {
 
     /**
      * Define o valor da propriedade link.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is {@link String }
+     *
      */
     public void setLink(String value) {
         this.link = value;
