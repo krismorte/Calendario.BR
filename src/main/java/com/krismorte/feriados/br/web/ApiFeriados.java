@@ -5,11 +5,9 @@
  */
 package com.krismorte.feriados.br.web;
 
-import com.krismorte.feriados.br.model.ErrorApi;
 import com.krismorte.feriados.br.model.Events;
 import com.krismorte.feriados.br.util.LocationNameUtil;
 import java.io.InputStream;
-import java.io.StringWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.security.cert.X509Certificate;
@@ -20,7 +18,6 @@ import javax.net.ssl.SSLSession;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 import javax.xml.bind.JAXBContext;
-import org.apache.commons.io.IOUtils;
 
 /**
  * http://www.rgagnon.com/javadetails/java-fix-certificate-problem-in-HTTPS.html
@@ -113,20 +110,11 @@ public class ApiFeriados {
         InputStream xml = connection.getInputStream();
         Events event = (Events) jc.createUnmarshaller().unmarshal(xml);
 
-        if (event.getLocation() == null) {
-            connection = getConnection(uri);
-            jc = JAXBContext.newInstance(ErrorApi.class);
-            xml = connection.getInputStream();
-            ErrorApi erro = (ErrorApi) jc.createUnmarshaller().unmarshal(xml);
+        if (event.getMsg() != null) {
             connection.disconnect();
-            throw new Exception(erro.getMsg());
-            /*xml = connection.getInputStream();
-            StringWriter writer = new StringWriter();
-            IOUtils.copy(xml, writer, "UTF-8");
-            String theString = writer.toString();
-            System.out.println(theString);
-            connection.disconnect();*/
+            throw new Exception(event.getMsg());
         }
+
         connection.disconnect();
 
         return event;

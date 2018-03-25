@@ -61,7 +61,8 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "location",
-    "event"
+    "event",
+    "msg"
 })
 @XmlRootElement(name = "events")
 public class Events {
@@ -69,6 +70,8 @@ public class Events {
     @XmlElement(required = true)
     protected Location location;
     protected List<Event> event;
+    @XmlElement(name = "error_msg")
+    private String msg;
 
     /**
      * Obt�m o valor da propriedade location.
@@ -123,5 +126,21 @@ public class Events {
         }
         return this.event;
     }
+
+    /**
+     * @return the msg
+     */
+    public String getMsg() {
+        return msg;
+    }
+
+    /**
+     * @param msg the msg to set
+     */
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+    
+    
 
 }
